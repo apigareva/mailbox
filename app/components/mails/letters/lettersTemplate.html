@@ -1,0 +1,21 @@
+<div>
+
+    <div>
+        <button ng-if="!$ctrl.isAdding" ng-click="$ctrl.toggleIsAdditing()">Добавить</button>
+    </div>
+
+    <form name="newLetter" ng-if="$ctrl.isAdding"  ng-submit="$ctrl.addLetter()">
+        <label>Кому<input name="to" ng-model="$ctrl.newLetter.to"></label><br>
+        <label>Тема<input name="subject" ng-model="$ctrl.newLetter.subject"></label><br>
+        <label>Текст<input name="body" ng-model="$ctrl.newLetter.body"></label><br>
+        <button>Отправить</button>
+    </form>
+
+    <div ng-repeat="letter in $ctrl.letters">
+        <letter-component letter="letter" remove="$ctrl.removeLetter(letter._id)"></letter-component>
+    </div>
+
+    <div>
+        <ui-view></ui-view>
+    </div>
+</div>

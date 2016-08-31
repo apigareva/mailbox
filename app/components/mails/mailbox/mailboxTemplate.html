@@ -1,0 +1,22 @@
+<div>
+    <div>
+        <button ng-if="!$ctrl.isAdding" ng-click="$ctrl.toggleIsAdditing()">Добавить</button>
+    </div>
+
+    <form name="newMailbox" ng-if="$ctrl.isAdding"  ng-submit="$ctrl.addMailbox()">
+        <label>Название<input name="title" ng-model="$ctrl.newMailbox.title"></label><br>
+        <button>Сохранить</button>
+    </form>
+
+    <div ng-repeat="mailbox in $ctrl.mailboxes">
+        <div>
+            <div>{{mailbox.title}}</div>
+            <md-button class="md-raised" md-no-ink ng-click="$ctrl.removeMailbox(mailbox._id, $index)">Удалить</md-button>
+        </div>
+        <a ui-sref=".letters({mailboxId: mailbox._id})">Letters</a>
+    </div>
+
+    <div>
+        <ui-view></ui-view>
+    </div>
+</div>

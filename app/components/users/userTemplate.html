@@ -1,0 +1,16 @@
+<div>
+    <form ng-submit="$ctrl.hadleUpdate()">
+        <label>Полное имя<input id="full-name" value={{$ctrl.user.fullName}}></label><br>
+        <label>Email<input id="email" value={{$ctrl.user.email}}></label><br>
+        <label>Адрес<input id="address" value={{$ctrl.user.address}}></label><br>
+
+        <md-button class="md-raised" md-no-ink ng-if="!$ctrl.isEditing" ng-click="$ctrl.toggleIsEditing()">Редактировать</md-button>
+        <md-button class="md-raised" md-no-ink ng-if="$ctrl.isEditing" ng-click="$ctrl.hadleUpdate()">Сохранить</md-button>
+        <md-button class="md-raised" md-no-ink ng-if="$ctrl.isEditing" ng-click="$ctrl.toggleIsEditing()">Отмена</md-button>
+        <md-button class="md-raised" md-no-ink ng-click="$ctrl.remove({id: $ctrl.user._id})">Удалить</md-button>
+    </form>
+
+    <div>
+        <ui-view></ui-view>
+    </div>
+</div>

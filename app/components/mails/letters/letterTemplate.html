@@ -1,0 +1,14 @@
+<div>
+    <label>Кому<input value={{$ctrl.letter.to}}></label><br>
+    <label>Тема письма<input value={{$ctrl.letter.subject}}></label><br>
+    <label>Содержание письма<input value={{$ctrl.letter.body}}></label><br>
+
+    <md-button class="md-raised" md-no-ink ng-if="!$ctrl.isEditing" ng-click="$ctrl.toggleIsEditing()">Редактировать</md-button>
+    <md-button class="md-raised" md-no-ink ng-if="$ctrl.isEditing" ng-click="$ctrl.updateLetter($ctrl.letter)">Сохранить</md-button>
+    <md-button class="md-raised" md-no-ink ng-if="$ctrl.isEditing" ng-click="$ctrl.toggleIsEditing()">Отмена</md-button>
+    <md-button class="md-raised" md-no-ink ng-click="$ctrl.removeLetter($ctrl.letter._id)">Удалить</md-button>
+
+    <div>
+        <ui-view></ui-view>
+    </div>
+</div>

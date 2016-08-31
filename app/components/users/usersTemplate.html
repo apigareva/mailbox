@@ -1,0 +1,45 @@
+<div>
+    <md-button class="md-raised md-primary md-button md-ink-ripple"
+               ng-disabled="$ctrl.isAdding"
+               ng-click="$ctrl.toggleIsAdditing()">
+        Добавить
+    </md-button>
+
+    <div flex-xs flex-gt-xs="50" layout="column" class="layout-column flex-xs flex-gt-xs-50" ng-if="$ctrl.isAdding">
+        <md-card>
+            <md-card-title>
+                <md-card-title-media></md-card-title-media>
+                <md-card-title-text>
+                    <label>Полное имя<input name="fullName" ng-model="$ctrl.newUser.fullName"></label><br>
+                    <label>Email<input name="email" ng-model="$ctrl.newUser.email"></label><br>
+                    <label>Адрес<input name="address" ng-model="$ctrl.newUser.address"></label><br>
+                </md-card-title-text>
+            </md-card-title>
+
+            <md-card-actions>
+                <button ng-click="$ctrl.addUser()">Сохранить</button>
+            </md-card-actions>
+        </md-card>
+    </div>
+
+    <form name="newUser" ng-if="$ctrl.isAdding" ng-submit="$ctrl.addUser()">
+        <label>Полное имя<input name="fullName" ng-model="$ctrl.newUser.fullName"></label><br>
+        <label>Email<input name="email" ng-model="$ctrl.newUser.email"></label><br>
+        <label>Адрес<input name="address" ng-model="$ctrl.newUser.address"></label><br>
+
+        <input type="submit" ng-submit="$ctrl.addUser()" value="Сохранить" />
+    </form>
+
+    <div ng-repeat="user in $ctrl.users">
+        <user-component
+                user="user"
+                index="$index"
+                remove="$ctrl.remove(user._id, $index)"
+                update="$ctrl.update(user._id, $index, values)">
+        </user-component>
+    </div>
+
+    <div>
+        <ui-view></ui-view>
+    </div>
+</div>

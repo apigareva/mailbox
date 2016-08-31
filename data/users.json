@@ -1,0 +1,29 @@
+{
+  "1": {
+      "id": 1,
+      "fullName": "Darth Vader",
+      "img": "https://cdn2.iconfinder.com/data/icons/starwars/icons/128/DarthVader.png",
+      "birthday": "12.02.1989",
+      "gender": "мужской",
+      "phone": "235-56-89",
+      "email": "darth_vader@gmail.com"
+  },
+  "2": {
+    "id": 2,
+    "fullName": "R2-D2",
+    "img": "https://cdn2.iconfinder.com/data/icons/starwars/icons/128/R2-D2.png",
+    "birthday": "23.06.1978",
+    "gender": "мужской",
+    "phone": "589-65-11",
+    "email": "r2d2@gmail.com"
+  },
+  "3": {
+    "id": 3,
+    "fullName": "Clone",
+    "img": "https://cdn2.iconfinder.com/data/icons/starwars/icons/128/clone-old.png",
+    "birthday": "18.11.1985",
+    "gender": "мужской",
+    "phone": "214-56-85",
+    "email": "clone437@gmail.com"
+  }
+}
