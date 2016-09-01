@@ -1,19 +1,30 @@
 <div>
 
     <div>
-        <button ng-if="!$ctrl.isAdding" ng-click="$ctrl.toggleIsAdditing()">Добавить</button>
+        <button ng-if="!$ctrl.isAdding" ng-click="$ctrl.toggleIsAdditing()">Add</button>
     </div>
 
     <form name="newLetter" ng-if="$ctrl.isAdding"  ng-submit="$ctrl.addLetter()">
-        <label>Кому<input name="to" ng-model="$ctrl.newLetter.to"></label><br>
-        <label>Тема<input name="subject" ng-model="$ctrl.newLetter.subject"></label><br>
-        <label>Текст<input name="body" ng-model="$ctrl.newLetter.body"></label><br>
-        <button>Отправить</button>
+        <label>To<input name="to" ng-model="$ctrl.newLetter.to"></label><br>
+        <label>Subject<input name="subject" ng-model="$ctrl.newLetter.subject"></label><br>
+        <label>Body<input name="body" ng-model="$ctrl.newLetter.body"></label><br>
+        <button>Send</button>
+        <button>Cancel</button>
     </form>
 
-    <div ng-repeat="letter in $ctrl.letters">
-        <letter-component letter="letter" remove="$ctrl.removeLetter(letter._id)"></letter-component>
-    </div>
+    <md-list flex="50">
+        <md-list-item class="md-3-line" ng-repeat="letter in $ctrl.letters">
+            <a ui-sref=".letter({letterId: letter._id})" />
+
+            <div class="md-list-item-text" layout="column">
+                <h3>{{letter.to}}</h3>
+                <h4>{{letter.subject}}</h4>
+                <p>{{letter.body}}</p>
+            </div>
+        </md-list-item>
+
+
+    </md-list>
 
     <div>
         <ui-view></ui-view>

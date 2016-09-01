@@ -9,7 +9,7 @@ let userComponent = {
     template: userTemplate,
     controller: function () {
         this.isEditing = false;
-        this.hadleUpdate = () => {
+        this.handleUpdate = () => {
             this.toggleIsEditing();
 
             const values = {fullName: this.fullName, email: this.email, address: this.address};

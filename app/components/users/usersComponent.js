@@ -7,7 +7,7 @@ let usersComponent =  {
             this.users = users;
         });
 
-        this.newUser = {fullName: '', email: '', address: ''};
+        this.newUser = {};
         this.isAdding = false;
         this.toggleIsAdditing = () => this.isAdding = !this.isAdding;
 
@@ -15,7 +15,7 @@ let usersComponent =  {
             this.toggleIsAdditing();
             usersService.addUser(this.newUser)
                 .then(res => this.users.push(res.data));
-            this.newUser = {fullName: '', email: '', address: ''};
+            this.newUser = {};
         };
 
         this.update = (index, id, values) => usersService.updateUser(id, values)
