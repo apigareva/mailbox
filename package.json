@@ -8,8 +8,8 @@
     "type": "git"
   },
   "scripts": {
-    "start": "webpack-dev-server --inline --port 3000 --content-base dist/",
-    "build:development": "NODE_ENV=development webpack"
+    "clean": "npm cache clean && rimraf -- node_modules && rimraf dist",
+    "start": "node node_modules/.bin/webpack-dev-server --inline --port 3000 --content-base dist/"
   },
   "devDependencies": {
     "babel-core": "^6.13.2",
