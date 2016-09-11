@@ -1,18 +1,17 @@
-<div>
-
-    <div flex-xs flex-gt-xs="50" layout="column">
+<div flex-offset="20">
+    <div flex-xs flex-gt-xs="70">
         <md-card>
             <md-card-title>
                 <md-card-title-media flex="20">
-                    <img class="md-media-md card-media" ng-src={{$ctrl.user.avatarUrl}} />
+                    <img class="md-media-md card-media" ng-src={{$ctrl.avatarUrl}} />
                 </md-card-title-media>
                 <md-card-title-text flex="80">
                     <div layout="row">
                         <md-input-container flex="50" class="md-icon-float md-block">
-                            <label>Full name</label><input ng-model="$ctrl.user.fullName" type="text" ng-disabled="!$ctrl.isEditing" required>
+                            <label>Full name</label><input name="fullName" ng-model="$ctrl.user.fullName" type="text" ng-disabled="!$ctrl.isEditing" required>
                         </md-input-container>
                         <md-input-container flex="40" class="md-icon-float md-block">
-                            <label>Birthday</label><md-datepicker ng-model="$ctrl.user.birthday" ng-disabled="!$ctrl.isEditing" />
+                            <label>Birthdate</label><md-datepicker ng-model="$ctrl.birthdate" ng-disabled="!$ctrl.isEditing"/>
                         </md-input-container>
                     </div>
                     <div layout="row">
@@ -33,6 +32,9 @@
                     <md-input-container class="md-icon-float md-block">
                         <label>Address</label><input ng-model="$ctrl.user.address" type="text" ng-disabled="!$ctrl.isEditing">
                     </md-input-container>
+                    <md-input-container class="md-icon-float md-block" ng-if="$ctrl.isEditing">
+                        <label>Avatar (url)</label><input ng-model="$ctrl.user.avatarUrl" type="text">
+                    </md-input-container>
                 </md-card-title-text>
             </md-card-title>
 
@@ -41,15 +43,11 @@
                     <button class="md-button md-ink-ripple" ng-click="$ctrl.toggleIsEditing()">Edit</button>
                 </div>
                 <div ng-if="$ctrl.isEditing">
-                    <button class="md-button md-ink-ripple" ng-click="$ctrl.handleUpdate()">Save</button>
+                    <button class="md-button md-ink-ripple" ng-click="$ctrl.update()">Save</button>
                     <button class="md-button md-ink-ripple" ng-click="$ctrl.toggleIsEditing()">Cancel</button>
                 </div>
-                <button class="md-button md-ink-ripple" ng-click="$ctrl.remove({id: $ctrl.user._id})">Remove</button>
+                <button class="md-button md-ink-ripple" ng-click="$ctrl.remove()">Remove</button>
             </md-card-actions>
         </md-card>
-    </div>
-
-    <div>
-        <ui-view></ui-view>
     </div>
 </div>

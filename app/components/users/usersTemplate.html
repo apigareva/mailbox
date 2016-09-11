@@ -1,24 +1,23 @@
 <div>
-    <md-button class="md-raised md-primary md-button md-ink-ripple"
-               ng-disabled="$ctrl.isAdding"
-               ng-click="$ctrl.toggleIsAdditing()">
-        Add
-    </md-button>
+    <main-component></main-component>
 
-    <div flex-xs flex-gt-xs="50" layout="column" ng-if="$ctrl.isAdding">
-        <div flex-xs flex-gt-xs="50" layout="column">
-            <md-card>
+    <div flex-offset="20" style="text-align: center;">
+        <div flex-xs flex-gt-xs="70">
+            <md-button flex="100" class="md-raised md-primary md-button md-ink-ripple"
+                       ng-disabled="$ctrl.isAdding"
+                       ng-click="$ctrl.toggleIsAdditing()"
+                       >
+                Add contact
+            </md-button>
+            <md-card ng-if="$ctrl.isAdding" >
                 <md-card-title>
                     <md-card-title-text>
-                        <md-input-container class="md-icon-float md-block">
-                            <label>Avatar (url)</label><input ng-model="$ctrl.newUser.avatarUrl" type="text">
-                        </md-input-container>
                         <div layout="row">
                             <md-input-container flex="50" class="md-icon-float md-block">
                                 <label>Full name</label><input ng-model="$ctrl.newUser.fullName" type="text" required>
                             </md-input-container>
                             <md-input-container flex="50" class="md-icon-float md-block">
-                                <label>Birthday</label><md-datepicker ng-model="$ctrl.newUser.birthday"/>
+                                <label>Birthday</label><md-datepicker ng-model="$ctrl.newUser.birthdate"/>
                             </md-input-container>
                         </div>
                         <div layout="row">
@@ -39,6 +38,9 @@
                         <md-input-container class="md-icon-float md-block">
                             <label>Address</label><input ng-model="$ctrl.newUser.address" type="text">
                         </md-input-container>
+                        <md-input-container class="md-icon-float md-block">
+                            <label>Avatar (url)</label><input ng-model="$ctrl.newUser.avatarUrl" type="text">
+                        </md-input-container>
                     </md-card-title-text>
                 </md-card-title>
 
@@ -55,7 +57,7 @@
                 user="user"
                 index="$index"
                 remove="$ctrl.remove(user._id, $index)"
-                update="$ctrl.update(user._id, $index, values)">
+                update="$ctrl.update(user)">
         </user-component>
     </div>
 

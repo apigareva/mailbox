@@ -1,0 +1,34 @@
+<div flex="90">
+    <md-card>
+        <md-card-title>
+            <md-card-title-text>
+                <md-autocomplete
+                        required
+                    md-floating-label="To"
+                    md-items="user in $ctrl.querySearch($ctrl.newLetter.to)"
+                    md-item-text="user.email"
+                    md-search-text="$ctrl.newLetter.to">
+                    <md-item-template>
+                        <span md-highlight-text="$ctrl.newLetter.to">{{user.email}}</span>
+                    </md-item-template>
+                    <div ng-message="required">This field is required</div>
+                </md-autocomplete>
+                <md-input-container class="md-icon-float md-block">
+                    <label>Subject</label><input ng-model="$ctrl.newLetter.subject" type="text" required>
+                </md-input-container>
+                <md-input-container class="md-icon-float md-block">
+                    <label>Body</label><textarea ng-model="$ctrl.newLetter.body" rows="10" required></textarea>
+                </md-input-container>
+            </md-card-title-text>
+        </md-card-title>
+
+        <md-card-actions layout="row">
+            <md-button class="md-button md-ink-ripple" ng-click="$ctrl.redirect('mailboxes.letters', {mailboxId: $ctrl.mailbox})">
+                Cancel
+            </md-button>
+            <md-button class="md-button md-ink-ripple" ng-click="$ctrl.send({newLetter: $ctrl.newLetter})">
+                Send
+            </md-button>
+        </md-card-actions>
+    </md-card>
+</div>

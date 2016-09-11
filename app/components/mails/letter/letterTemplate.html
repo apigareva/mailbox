@@ -1,0 +1,25 @@
+<div flex="90">
+    <md-card>
+        <md-card-title layout="column">
+            <md-card-title-text>
+                <span class="md-headline">{{$ctrl.letter.subject}}</span>
+            </md-card-title-text>
+            <div layout="row" style="margin: 30px 0; cursor: pointer" ng-click="$ctrl.openUserCard()">
+                <md-card-title-media>
+                    <img ng-src={{$ctrl.avatarUrl}} alt="{{$ctrl.letter.to}}" height="40px" width="40px"/>
+                </md-card-title-media>
+                <md-card-title-text style="margin: 0 10px">
+                    <span class="md-subhead">
+                        {{$ctrl.letter.to}}
+                    </span>
+                </md-card-title-text>
+            </div>
+        </md-card-title>
+        <md-card-content>
+            <p>{{$ctrl.letter.body}}</p>
+        </md-card-content>
+    </md-card>
+    <md-card-actions layout="row" layout-align="end center">
+        <button class="md-button md-ink-ripple" ng-click="$ctrl.remove()">Remove</button>
+    </md-card-actions>
+</div>

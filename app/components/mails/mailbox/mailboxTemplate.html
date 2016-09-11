@@ -1,10 +1,27 @@
 <div>
-
-    <div ng-repeat="mailbox in $ctrl.mailboxes">
-        <a ui-sref=".letters({mailboxId: mailbox._id})">{{mailbox.title}}</a>
-    </div>
-
-    <div>
-        <ui-view></ui-view>
+    <main-component></main-component>
+    <div style="margin: 15px 10px">
+        <div layout-gt-sm="row" layout="column">
+            <div flex-gt-sm="10" flex>
+                <md-button class="md-raised md-primary md-button md-ink-ripple"
+                           ng-click="$ctrl.redirect('mailboxes.newLetter')">
+                    Compose
+                </md-button>
+                <md-content>
+                    <md-list class="md-dense" flex>
+                        <md-list-item class="md-1-line" ng-repeat="mailbox in $ctrl.mailboxes"
+                                      ng-click="$ctrl.redirect('mailboxes.letters', {mailboxId: mailbox._id})">
+                            <span>{{mailbox.title}}</span>
+                        </md-list-item>
+                    </md-list>
+                </md-content>
+            </div>
+            <div flex="5">
+                <!-- Spacer //-->
+            </div>
+            <div flex-gt-sm="85" flex>
+                <ui-view></ui-view>
+            </div>
+        </div>
     </div>
 </div>

@@ -3,7 +3,7 @@ import usersTemplate from './usersTemplate.html';
 let usersComponent =  {
     template: usersTemplate,
     controller: function (usersService) {
-        usersService.getUsers().then(users => {
+        usersService.getList().then(users => {
             this.users = users;
         });
 
@@ -13,15 +13,17 @@ let usersComponent =  {
 
         this.addUser = () => {
             this.toggleIsAdditing();
-            usersService.addUser(this.newUser)
-                .then(res => this.users.push(res.data));
+            usersService.post(this.newUser)
+            .then(res => this.users.push(res));
             this.newUser = {};
         };
 
-        this.update = (index, id, values) => usersService.updateUser(id, values)
-            .then(res => this.users.splice(index, 1, res.data));
+        this.update = user => {
+            return usersService.one(user._id).patch(user)
+                .then(res => this.users.splice(index, 1, res));
+        };
 
-        this.remove = (id, index) => usersService.removeUser(id)
+        this.remove = (id, index) => usersService.one(id).remove()
             .then(() => this.users.splice(index, 1));
 
         this.name = 'users';

@@ -1,27 +1,34 @@
+const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const NODE_ENV = process.env.NODE_ENV || 'development';
 
 module.exports = {
-    context: __dirname + '/app',
-    entry: './app.js',
+    entry: {
+        build: path.join(__dirname, 'app/app.js'),
+        vendors: ['angular', 'angular-ui-router', 'angular-material', 'restangular']
+    },
     output: {
-        filename: 'build.js',
-        library: 'app'
+        path: path.join(__dirname, 'dist'),
+        publicPath: '/',
+        filename: '[name].js'
     },
 
     watch: true,
 
-    devtool: NODE_ENV === 'development' ? 'cheap-inline-module-source-map' : null,
+    devtool: NODE_ENV === 'development' ? 'source-map' : null,
 
     plugins: [
         new webpack.NoErrorsPlugin(),
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': NODE_ENV
         }),
+        new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.bundle.js', Infinity),
         new HtmlWebpackPlugin({
-            template: './index.html'
+            template: path.join(__dirname, 'app/index.html'),
+            chunks: ['build', 'vendors'],
+            filename: 'index.html',
         }),
         new ExtractTextPlugin('css/[name].css', { allChunks: true })
     ],
@@ -30,8 +37,8 @@ module.exports = {
         modulesDirectories: ['node_modules'],
         extensions: ['', '.js'],
         alias: {
-            components: `${__dirname}/app/components`,
-            common: `${__dirname}/app/common`
+            components: path.join(__dirname, 'app/components'),
+            common: path.join(__dirname, 'app/common')
         }
     },
     resolveLoader: {
@@ -44,7 +51,7 @@ module.exports = {
         loaders: [
             {
                 test: /\.jsx?$/,
-                include: __dirname + '/app',
+                include: path.join(__dirname, 'app'),
                 loader: 'babel',
                 query: {
                     presets: ['es2015']
@@ -53,6 +60,10 @@ module.exports = {
             {
                 test: /\.html$/,
                 loader: 'raw'
+            },
+            {
+                test: /\.(png|jpg|gif|svg|woff|woff2|eot|ttf|mp3|wav|ico)$/,
+                loader: 'url?limit=500000'
             },
             {
                 test:  /\.(css|scss)$/,

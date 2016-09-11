@@ -1,30 +1,19 @@
 <div>
-
-    <div>
-        <button ng-if="!$ctrl.isAdding" ng-click="$ctrl.toggleIsAdditing()">Add</button>
-    </div>
-
-    <form name="newLetter" ng-if="$ctrl.isAdding"  ng-submit="$ctrl.addLetter()">
-        <label>To<input name="to" ng-model="$ctrl.newLetter.to"></label><br>
-        <label>Subject<input name="subject" ng-model="$ctrl.newLetter.subject"></label><br>
-        <label>Body<input name="body" ng-model="$ctrl.newLetter.body"></label><br>
-        <button>Send</button>
-        <button>Cancel</button>
-    </form>
-
-    <md-list flex="50">
-        <md-list-item class="md-3-line" ng-repeat="letter in $ctrl.letters">
-            <a ui-sref=".letter({letterId: letter._id})" />
-
-            <div class="md-list-item-text" layout="column">
-                <h3>{{letter.to}}</h3>
-                <h4>{{letter.subject}}</h4>
-                <p>{{letter.body}}</p>
-            </div>
-        </md-list-item>
-
-
-    </md-list>
+    <md-card flex="90">
+        <md-list>
+            <md-list-item class="md-3-line" ng-repeat="letter in $ctrl.letters" ng-click="$ctrl.redirect('mailboxes.letter', {letterId: letter._id})">
+                <img ng-src="{{$ctrl.getAvatar(letter.to)}}" class="md-avatar" alt="{{letter.to}}" />
+                <div class="md-list-item-text" layout="row">
+                    <h3 flex="20" >{{ letter.to }}</h3>
+                    <div flex="5">
+                        <!-- Spacer //-->
+                    </div>
+                    <h4 flex="80" >{{ letter.subject}}</h4>
+                </div>
+                <md-divider ng-if="$index !== $ctrl.letters.length - 1"></md-divider>
+            </md-list-item>
+        </md-list>
+    </md-card>
 
     <div>
         <ui-view></ui-view>

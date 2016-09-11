@@ -2,20 +2,28 @@ import userTemplate from './userTemplate.html';
 
 let userComponent = {
     bindings: {
-        user: "<",
-        update: "&",
-        remove: "&"
+        user: "<"
     },
     template: userTemplate,
-    controller: function () {
-        this.isEditing = false;
-        this.handleUpdate = () => {
-            this.toggleIsEditing();
+    controller: function($state, usersService) {
 
-            const values = {fullName: this.fullName, email: this.email, address: this.address};
-            this.update({id: user._id, values: values});
-        };
+        this.birthdate = this.user.birthdate ? new Date(this.user.birthdate) : '';
+        this.avatarUrl = this.user.avatarUrl || require('../../img/default-avatar.png');
+
+        this.isEditing = false;
         this.toggleIsEditing = () => this.isEditing = !this.isEditing;
+
+        this.update = () => {
+            this.toggleIsEditing();
+            this.user.birthdate = this.birthdate || "";
+            usersService.one(this.user._id).patch(this.user);
+        };
+
+        this.remove = () => {
+            usersService.one(this.user._id).remove();
+            $state.go('users');
+        }
+
     }
 };
 
