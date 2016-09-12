@@ -2,7 +2,6 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const NODE_ENV = process.env.NODE_ENV || 'development';
 
 module.exports = {
     entry: {
@@ -16,18 +15,15 @@ module.exports = {
 
     watch: true,
 
-    devtool: NODE_ENV === 'development' ? 'source-map' : null,
+    devtool: 'source-map',
 
     plugins: [
         new webpack.NoErrorsPlugin(),
-        new webpack.DefinePlugin({
-            'process.env.NODE_ENV': NODE_ENV
-        }),
         new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.bundle.js', Infinity),
         new HtmlWebpackPlugin({
             template: path.join(__dirname, 'app/index.html'),
             chunks: ['build', 'vendors'],
-            filename: 'index.html',
+            filename: 'index.html'
         }),
         new ExtractTextPlugin('css/[name].css', { allChunks: true })
     ],

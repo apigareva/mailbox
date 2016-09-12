@@ -9,8 +9,8 @@
     "url": "git+https://github.com/apigareva/mailboxes.git"
   },
   "scripts": {
-    "clean": "npm cache clean && rimraf -- node_modules && rimraf dist",
-    "start": "node node_modules/.bin/webpack-dev-server --inline --port 3000 --content-base dist/"
+    "clean": "npm cache clean && rimraf -- node_modules",
+    "start": "NODE_ENV=development node node_modules/.bin/webpack-dev-server --inline --port 3000 --content-base dist/"
   },
   "devDependencies": {
     "babel-core": "6.13.2",
