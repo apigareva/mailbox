@@ -9,7 +9,7 @@ import usersComponent from './usersComponent';
 
 export default angular.module('users', [uiRouter, angularMaterial, restangular])
     .config(($stateProvider, RestangularProvider, $mdThemingProvider) => {
-        RestangularProvider.setBaseUrl("http://test-api.javascript.ru/v1/apigareva");
+        RestangularProvider.setBaseUrl("https://test-api.javascript.ru/v1/apigareva");
 
         $mdThemingProvider.theme('default')
             .primaryPalette('indigo', {

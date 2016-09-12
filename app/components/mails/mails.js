@@ -13,7 +13,7 @@ import newLetterComponent from './newLetter/newLetterComponent';
 
 export default angular.module('main.mails', [uiRouter, angularMaterial, restangular])
     .config(($stateProvider, RestangularProvider) => {
-        RestangularProvider.setBaseUrl("http://test-api.javascript.ru/v1/apigareva");
+        RestangularProvider.setBaseUrl("https://test-api.javascript.ru/v1/apigareva");
 
         $stateProvider
             .state("mailboxes", {
