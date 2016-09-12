@@ -1,9 +1,11 @@
 <div flex="90">
+    <form name="letter">
     <md-card>
         <md-card-title>
             <md-card-title-text>
                 <md-autocomplete
-                        required
+                    md-input-name="to"
+                    required
                     md-floating-label="To"
                     md-items="user in $ctrl.querySearch($ctrl.newLetter.to)"
                     md-item-text="user.email"
@@ -11,13 +13,24 @@
                     <md-item-template>
                         <span md-highlight-text="$ctrl.newLetter.to">{{user.email}}</span>
                     </md-item-template>
-                    <div ng-message="required">This field is required</div>
+                    <div ng-messages="letter.to.$error" role="alert" multiple
+                         ng-if="letter.to.$touched">
+                        <div ng-message="required" class="md-input-message-animation">This field is required</div>
+                    </div>
                 </md-autocomplete>
+
                 <md-input-container class="md-icon-float md-block">
-                    <label>Subject</label><input ng-model="$ctrl.newLetter.subject" type="text" required>
+                    <label>Subject</label><input name="subject" ng-model="$ctrl.newLetter.subject" type="text" required>
+                    <div ng-messages="letter.subject.$error" role="alert">
+                        <div ng-message="required" class="md-input-message-animation">This field is required</div>
+                    </div>
                 </md-input-container>
+
                 <md-input-container class="md-icon-float md-block">
-                    <label>Body</label><textarea ng-model="$ctrl.newLetter.body" rows="10" required></textarea>
+                    <label>Body</label><textarea name="body" ng-model="$ctrl.newLetter.body" rows="10" required></textarea>
+                    <div ng-messages="letter.body.$error" role="alert">
+                        <div ng-message="required" class="md-input-message-animation">This field is required</div>
+                    </div>
                 </md-input-container>
             </md-card-title-text>
         </md-card-title>
@@ -31,4 +44,5 @@
             </md-button>
         </md-card-actions>
     </md-card>
+    </form>
 </div>

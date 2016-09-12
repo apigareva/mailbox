@@ -16,7 +16,7 @@ npm start
 
 * [Angular 1.5.8](https://www.npmjs.com/package/angular)
 * [Angular UI-Router](https://github.com/angular-ui/ui-router)
-* [Rest Angular](github:apigareva/restangular)
+* [Rest Angular](https://github.com/apigareva/restangular)
 * [Angular Animate](https://www.npmjs.com/package/angular-animate)
 * [Angular Aria](https://www.npmjs.com/package/angular-aria)
 * [Angular Material](https://github.com/angular/material)

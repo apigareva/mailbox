@@ -1,7 +1,7 @@
 <div>
     <main-component></main-component>
 
-    <div flex-offset="20" style="text-align: center;">
+    <div flex-offset="20">
         <div flex-xs flex-gt-xs="70">
             <md-button flex="100" class="md-raised md-primary md-button md-ink-ripple"
                        ng-disabled="$ctrl.isAdding"
@@ -9,46 +9,48 @@
                        >
                 Add contact
             </md-button>
-            <md-card ng-if="$ctrl.isAdding" >
-                <md-card-title>
-                    <md-card-title-text>
-                        <div layout="row">
-                            <md-input-container flex="50" class="md-icon-float md-block">
-                                <label>Full name</label><input ng-model="$ctrl.newUser.fullName" type="text" required>
-                            </md-input-container>
-                            <md-input-container flex="50" class="md-icon-float md-block">
-                                <label>Birthday</label><md-datepicker ng-model="$ctrl.newUser.birthdate"/>
-                            </md-input-container>
-                        </div>
-                        <div layout="row">
-                            <md-input-container flex="50" class="md-icon-float md-block">
-                                <label>Email</label><input ng-model="$ctrl.newUser.email" type="text" required>
-                            </md-input-container>
-                            <div flex="5" hide-xs hide-sm>
-                                <!-- Spacer //-->
+            <form name="newUserForm">
+                <md-card ng-if="$ctrl.isAdding" >
+                    <md-card-title>
+                        <md-card-title-text>
+                            <div layout="row">
+                                <md-input-container flex="50" class="md-icon-float md-block">
+                                    <label>Full name</label><input name="fullName" ng-model="$ctrl.newUser.fullName" type="text" required>
+                                </md-input-container>
+                                <md-input-container flex="50" class="md-icon-float md-block">
+                                    <label>Birthday</label><md-datepicker ng-model="$ctrl.newUser.birthdate"/>
+                                </md-input-container>
                             </div>
-                            <md-input-container flex="25">
-                                <label>Gender</label>
-                                <md-select name="type" ng-model="$ctrl.newUser.gender">
-                                    <md-option value="M">Male</md-option>
-                                    <md-option value="F">Female</md-option>
-                                </md-select>
+                            <div layout="row">
+                                <md-input-container flex="50" class="md-icon-float md-block">
+                                    <label>Email</label><input name="email" ng-model="$ctrl.newUser.email" type="text" required>
+                                </md-input-container>
+                                <div flex="5" hide-xs hide-sm>
+                                    <!-- Spacer //-->
+                                </div>
+                                <md-input-container flex="25">
+                                    <label>Gender</label>
+                                    <md-select name="type" ng-model="$ctrl.newUser.gender">
+                                        <md-option value="M">Male</md-option>
+                                        <md-option value="F">Female</md-option>
+                                    </md-select>
+                                </md-input-container>
+                            </div>
+                            <md-input-container class="md-icon-float md-block">
+                                <label>Address</label><input ng-model="$ctrl.newUser.address" type="text">
                             </md-input-container>
-                        </div>
-                        <md-input-container class="md-icon-float md-block">
-                            <label>Address</label><input ng-model="$ctrl.newUser.address" type="text">
-                        </md-input-container>
-                        <md-input-container class="md-icon-float md-block">
-                            <label>Avatar (url)</label><input ng-model="$ctrl.newUser.avatarUrl" type="text">
-                        </md-input-container>
-                    </md-card-title-text>
-                </md-card-title>
+                            <md-input-container class="md-icon-float md-block">
+                                <label>Avatar (url)</label><input ng-model="$ctrl.newUser.avatarUrl" type="text">
+                            </md-input-container>
+                        </md-card-title-text>
+                    </md-card-title>
 
-                <md-card-actions layout="row" layout-align="end center">
-                    <button class="md-button md-ink-ripple" ng-click="$ctrl.addUser()">Save</button>
-                    <button class="md-button md-ink-ripple" ng-click="$ctrl.toggleIsAdditing()">Cancel</button>
-                </md-card-actions>
-            </md-card>
+                    <md-card-actions layout="row" layout-align="end center">
+                        <button class="md-button md-ink-ripple" ng-click="$ctrl.addUser()">Save</button>
+                        <button class="md-button md-ink-ripple" ng-click="$ctrl.toggleIsAdditing()">Cancel</button>
+                    </md-card-actions>
+                </md-card>
+            </form>
         </div>
     </div>
 

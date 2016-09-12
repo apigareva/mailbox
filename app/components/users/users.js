@@ -38,6 +38,6 @@ export default angular.module('users', [uiRouter, angularMaterial, restangular])
                 }
             })
     })
-    .factory('usersService', usersService)
+    .service('usersService', usersService)
     .component('usersComponent', usersComponent)
     .component('userComponent', userComponent);

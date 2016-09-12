@@ -2,7 +2,7 @@ import usersTemplate from './usersTemplate.html';
 
 let usersComponent =  {
     template: usersTemplate,
-    controller: function (usersService) {
+    controller: function($mdDialog, usersService) {
         usersService.getList().then(users => {
             this.users = users;
         });
@@ -11,7 +11,22 @@ let usersComponent =  {
         this.isAdding = false;
         this.toggleIsAdditing = () => this.isAdding = !this.isAdding;
 
+        this.showAlert = () => {
+            $mdDialog.show(
+                $mdDialog.alert()
+                    .clickOutsideToClose(true)
+                    .title('Error!')
+                    .textContent('You should fill required fields.')
+                    .ariaLabel('Error alert')
+                    .ok('Cancel')
+            );
+        };
+
         this.addUser = () => {
+            if (!this.newUser.fullName || !this.newUser.email) {
+                return this.showAlert();
+            }
+
             this.toggleIsAdditing();
             usersService.post(this.newUser)
             .then(res => this.users.push(res));
