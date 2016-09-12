@@ -96,7 +96,7 @@ webpackJsonp([0],[
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	exports.default = _angular2.default.module('users', [_angularUiRouter2.default, _angularMaterial2.default, _restangular2.default]).config(function ($stateProvider, RestangularProvider, $mdThemingProvider) {
-	    RestangularProvider.setBaseUrl("http://test-api.javascript.ru/v1/apigareva");
+	    RestangularProvider.setBaseUrl("https://test-api.javascript.ru/v1/apigareva");
 	
 	    $mdThemingProvider.theme('default').primaryPalette('indigo', {
 	        'default': '400',
@@ -337,7 +337,7 @@ webpackJsonp([0],[
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	exports.default = _angular2.default.module('main.mails', [_angularUiRouter2.default, _angularMaterial2.default, _restangular2.default]).config(function ($stateProvider, RestangularProvider) {
-	    RestangularProvider.setBaseUrl("http://test-api.javascript.ru/v1/apigareva");
+	    RestangularProvider.setBaseUrl("https://test-api.javascript.ru/v1/apigareva");
 	
 	    $stateProvider.state("mailboxes", {
 	        url: "/mailboxes",
